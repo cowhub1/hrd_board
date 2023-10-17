@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head th:replace="common/head">
+
+</head>
+
+<body>
+
+  <div th:replace="common/header">
+  </div>
+
+  <nav th:replace="common/nav">
+  </nav>
+
+  <div class="container mt-5">
+    <div class="card">
+      <!-- 헤더 -->
+      <div class="card-header">
+        <h1><a class="boardlink" th:href="@{/board/list}">게시판</a></h1>
+      </div>
+      <!-- 바디 -->
+      <div class="card-body">
+        <span class="badge bg-primary rounded-pill" th:text="${board.id} + '번'"></span>
+        <div class="card-title">
+          <h3 th:text="${board.title}"></h3>
+        </div>
+        <div class="card-myinfo">
+          <dl>
+            <dt>작성자</dt>
+            <dd th:text="${board.userId}"></dd>
+          </dl>
+          <dl>
+            <dt>날짜</dt>
+            <dd>22-01-27</dd>
+          </dl>
+          <dl>
+            <dt>조회</dt>
+            <dd>14회</dd>
+          </dl>
+        </div>
+        <div class="card-content">
+          <div th:text="${board.content}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="endcontainer">
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/board/list}" id="list">목록</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{'/board/update/'+${board.id}}" id="update">수정</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{'/board/delete/'+${board.id}}" id="delete" th:num="${board.id}">삭제</a>
+      </li>
+    </ul>
+  </div>
+  
+  <script>
+    document.querySelector('#delete').addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('삭제하시겠습니까?')) {
+        const num = e.target.getAttribute('num');
+        location = `/board/delete/${num}`;
+      }
+    });
+  </script>
+
+  <div th:replace="common/footer">
+  </div>
+
+</body>
+
+</html>
+<style>
+  h1{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .card-header{
+    text-align: center;
+  }
+  .boardlink{
+    color: black;
+    text-decoration: none;
+  }
+  
+  .card-body{
+    text-align: center;
+    padding: 10px;
+  }
+  .card-body .card-title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+  }
+  .card-body .card-myinfo{
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    margin: auto;
+    margin-bottom: 30px;
+    width: 400px;
+    height: 40px;
+    padding-top: 5px;
+  }
+  .card-body .card-myinfo dl{
+    display: inline-block;
+  }
+  .card-body .card-myinfo dl dt, dd{
+    display: inline-block;
+    font-size: small;
+  }
+  .card-body .card-myinfo dl dt{
+    margin-left: 5px;
+    color: #999;
+  }
+  .card-body .card-myinfo dl dd{
+    margin-left: 5px;
+    margin-right: 10px;
+  }
+  .card-content{
+    margin-top: 10px;
+    padding-bottom: 30px;
+    /* padding-left: 50px; */
+    /* text-align: start; */
+    height: 80px;
+  }
+  .endcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+</style>

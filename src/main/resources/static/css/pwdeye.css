@@ -1,0 +1,24 @@
+label{
+    display: block;
+  }
+  input {
+      position: relative;
+    }
+  .form-control{
+    display: inline-block;
+    width: 96%;
+  }
+  #pwd .eyes {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto 2px;
+    height: 30px;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  #signup{
+    margin-top: 20px;
+    width: 96%;
+  }
